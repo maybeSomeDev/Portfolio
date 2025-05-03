@@ -1,4 +1,4 @@
-# Modern Portfolio Website
+# NextGen Portfolio Website
 
 A modern, animated portfolio website built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
 

@@ -7,6 +7,7 @@ import { ButtonLink } from "@/components/button-link";
 import * as Icons from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { LucideIcon } from "lucide-react";
 
 export function HeroSection() {
   const personalInfo = getPersonalInfo();
@@ -46,7 +47,7 @@ export function HeroSection() {
           >
             <motion.div variants={item}>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-                <span className="inline-block">Hi, I'm</span>
+                <span className="inline-block">Hi, I&apos;m</span>
                 {' '}
                 <span className="inline-block text-primary">{personalInfo.name}</span>
               </h1>
@@ -79,7 +80,8 @@ export function HeroSection() {
             <motion.div variants={item}>
               <div className="flex gap-6 justify-center mt-4">
                 {socials.map((social) => {
-                  const IconComponent = Icons[social.icon as keyof typeof Icons];
+                  // const IconComponent = Icons[social.icon as keyof typeof Icons];
+                  const IconComponent = Icons[social.icon as keyof typeof Icons] as LucideIcon;
                   return (
                     <motion.a
                       key={social.platform}

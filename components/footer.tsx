@@ -3,8 +3,10 @@
 import { getSocialLinks, getPersonalInfo } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
 import * as Icons from "lucide-react";
 import Link from "next/link";
+import { LucideIcon } from "lucide-react";
 
 export function Footer() {
   const socials = getSocialLinks();
@@ -42,7 +44,7 @@ export function Footer() {
             viewport={{ once: true, margin: "-100px" }}
           >
             {socials.map((social) => {
-              const IconComponent = Icons[social.icon as keyof typeof Icons];
+              const IconComponent = Icons[social.icon as keyof typeof Icons] as LucideIcon;
               return (
                 <motion.a
                   key={social.platform}
@@ -73,7 +75,7 @@ export function Footer() {
             viewport={{ once: true }}
           >
             <p className="mb-2 flex items-center justify-center">
-              Made with ❤️ by {personalInfo.name}
+              Made with <Heart className="h-4 w-4 mx-1 text-accent" /> by {personalInfo.name}
             </p>
             <p>&copy; {currentYear} All rights reserved.</p>
           </motion.div>
