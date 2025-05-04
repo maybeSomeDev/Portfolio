@@ -4,6 +4,11 @@ A modern, animated portfolio website built with Next.js, TypeScript, Tailwind CS
 
 ## **[Live Demo Version](https://your-demo-url.com)** 
 
+## Requirements
+
+- **Node.js**: >=18.x
+- **Next.js**: 13.5.x
+
 ## Features
 
 - Responsive design that works across all devices
