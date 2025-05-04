@@ -2,7 +2,7 @@
 
 A modern, animated portfolio website built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
 
-## **[Live Demo Version](https://your-demo-url.com)** 
+## **[Live Demo Version](nextgenportfolio.vercel.app)** 
 
 ## Requirements
 
