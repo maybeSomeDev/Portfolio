@@ -75,7 +75,7 @@ export function Footer() {
             viewport={{ once: true }}
           >
             <p className="mb-2 flex items-center justify-center">
-              Made with <Heart className="h-4 w-4 mx-1 text-accent" /> by {personalInfo.name}
+              Made with ❤️ by {personalInfo.name}
             </p>
             <p>&copy; {currentYear} All rights reserved.</p>
           </motion.div>
