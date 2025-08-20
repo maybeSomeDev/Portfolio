@@ -7,6 +7,7 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { getPersonalInfo } from "@/lib/config";
 
 interface NavItem {
   label: string;
@@ -25,6 +26,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
+  const personalInfo = getPersonalInfo();
   
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
@@ -67,7 +69,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            Alex<span className="text-primary">Morgan</span>
+            {personalInfo.name.split(' ')[0]}<span className="text-primary">{personalInfo.name.split(' ')[1] || ''}</span>
           </motion.span>
         </Link>
         
