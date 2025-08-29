@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Github, ExternalLink, ArrowRight } from "lucide-react";
+import { Github, ExternalLink, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Project } from "@/config/types";
 
@@ -96,16 +96,61 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, onSelect }: ProjectCardProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const images = project.images || [project.imageUrl].filter(Boolean);
+  
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+  
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
     <Card className="overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow">
-      <div className="relative h-48 overflow-hidden">
-        <Image
-          src={project.imageUrl}
-          alt={project.title}
-          fill
-          style={{ objectFit: "cover" }}
-          className="transition-transform duration-500 hover:scale-105"
-        />
+      <div className="relative h-48 overflow-hidden group">
+        {images.length > 0 && (
+          <Image
+            src={images[currentImageIndex]}
+            alt={project.title}
+            fill
+            style={{ objectFit: "cover" }}
+            className="transition-transform duration-500 hover:scale-105"
+          />
+        )}
+        
+        {images.length > 1 && (
+          <>
+            <Button
+              variant="secondary"
+              size="icon"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8"
+              onClick={prevImage}
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="secondary"
+              size="icon"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8"
+              onClick={nextImage}
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+              {images.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>
@@ -159,23 +204,71 @@ interface ProjectDialogProps {
 }
 
 function ProjectDialog({ project, onClose }: ProjectDialogProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
   if (!project) return null;
+  
+  const images = project.images || [project.imageUrl].filter(Boolean);
+  
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+  
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
   
   return (
     <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-5xl h-screen overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">{project.title}</DialogTitle>
           <DialogDescription>{project.description}</DialogDescription>
         </DialogHeader>
         
-        <div className="relative h-64 md:h-80 mt-4 rounded-md overflow-hidden">
-          <Image
-            src={project.imageUrl}
-            alt={project.title}
-            fill
-            style={{ objectFit: "cover" }}
-          />
+        <div className="relative h-64 md:h-80 mt-4 rounded-md overflow-hidden group">
+          {images.length > 0 && (
+            <Image
+              src={images[currentImageIndex]}
+              alt={project.title}
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          )}
+          
+          {images.length > 1 && (
+            <>
+              <Button
+                variant="secondary"
+                size="icon"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={prevImage}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="secondary"
+                size="icon"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={nextImage}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+              
+              {/* Image indicators */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                    }`}
+                    onClick={() => setCurrentImageIndex(index)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
         
         <div className="mt-4">

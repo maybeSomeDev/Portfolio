@@ -15,7 +15,8 @@ export function ExperienceSection() {
   const educationExperiences = getEducationExperiences();
 
   return (
-    <SectionContainer id="experience">
+    // Hide
+    <SectionContainer  className="hidden" id="experience">{}
       <SectionHeading 
         title="Experience & Education" 
         subtitle="My professional journey and educational background"

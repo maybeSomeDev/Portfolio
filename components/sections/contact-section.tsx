@@ -79,7 +79,8 @@ export function ContactSection() {
   };
 
   return (
-    <SectionContainer id="contact">
+    // Hide
+    <SectionContainer  className="hidden" id="contact">{}
       <SectionHeading 
         title="Get In Touch" 
         subtitle="Have a question or want to work together? Feel free to contact me."

@@ -6,6 +6,11 @@
     "longDescription": "Built with Next.js, TypeScript, and Tailwind CSS, this e-commerce platform features a headless CMS, cart functionality, payment processing with Stripe, and user authentication.",
     "tags": ["Next.js", "TypeScript", "Tailwind CSS", "Stripe", "Headless CMS"],
     "imageUrl": "https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "images": [
+      "https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/5473302/pexels-photo-5473302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    ],
     "liveUrl": "https://ecommerce-demo.com",
     "githubUrl": "https://github.com/killcod3",
     "featured": true
@@ -17,6 +22,11 @@
     "longDescription": "A comprehensive analytics dashboard built with React, D3.js, and Firebase. Features real-time data updates, interactive charts, and customizable widgets.",
     "tags": ["React", "D3.js", "Firebase", "Recharts", "Real-time"],
     "imageUrl": "https://images.pexels.com/photos/5473302/pexels-photo-5473302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "images": [
+      "https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/5473302/pexels-photo-5473302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    ],
     "liveUrl": "https://dashboard-demo.com",
     "githubUrl": "https://github.com/killcod3",
     "featured": true
@@ -28,6 +38,11 @@
     "longDescription": "A task management application built with React, Redux, and Socket.io for real-time collaboration. Features include drag-and-drop task organization, comments, attachments, and team collaboration.",
     "tags": ["React", "Redux", "Socket.io", "Node.js", "MongoDB"],
     "imageUrl": "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "images": [
+      "https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/5473302/pexels-photo-5473302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    ],
     "githubUrl": "https://github.com/killcod3",
     "featured": false
   },
@@ -38,6 +53,11 @@
     "longDescription": "A personal finance application built with React Native and Firebase. Features include expense tracking, budget planning, financial goals, and visualization of spending patterns.",
     "tags": ["React Native", "Firebase", "Mobile", "Charts"],
     "imageUrl": "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "images": [
+      "https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/5473302/pexels-photo-5473302.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    ],
     "liveUrl": "https://finance-app.com",
     "featured": false
   }

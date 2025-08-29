@@ -3,15 +3,22 @@
 import { getSocialLinks, getPersonalInfo } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
-import * as Icons from "lucide-react";
 import Link from "next/link";
-import { LucideIcon } from "lucide-react";
+import Image from "next/image";
+
+import GithubIcon from "@/components/icons/github.svg";
+import DiscordIcon from "@/components/icons/discord.svg";
+import RobloxIcon from "@/components/icons/roblox.svg";
+
+const iconMap = {
+  "github": GithubIcon,
+  "discord": DiscordIcon,
+  "roblox": RobloxIcon,
+};
 
 export function Footer() {
   const socials = getSocialLinks();
   const personalInfo = getPersonalInfo();
-  const currentYear = new Date().getFullYear();
 
   const container = {
     hidden: { opacity: 0 },
@@ -44,7 +51,7 @@ export function Footer() {
             viewport={{ once: true, margin: "-100px" }}
           >
             {socials.map((social) => {
-              const IconComponent = Icons[social.icon as keyof typeof Icons] as LucideIcon;
+              const IconSrc = iconMap[social.icon.toLowerCase() as keyof typeof iconMap];
               return (
                 <motion.a
                   key={social.platform}
@@ -61,7 +68,15 @@ export function Footer() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  {IconComponent && <IconComponent className="h-5 w-5" />}
+                  {IconSrc && (
+                    <Image
+                      src={IconSrc}
+                      alt={`${social.platform} icon`}
+                      width={20}
+                      height={20}
+                      className="w-5 h-5"
+                    />
+                  )}
                 </motion.a>
               );
             })}
@@ -75,9 +90,11 @@ export function Footer() {
             viewport={{ once: true }}
           >
             <p className="mb-2 flex items-center justify-center">
-              Made with ❤️ by {personalInfo.name}
+              {/* Made with ❤️ by {personalInfo.name} */}
             </p>
-            <p>&copy; {currentYear} All rights reserved.</p>
+            <p>
+              {/* &copy; {currentYear} All rights reserved. */}
+            </p>
           </motion.div>
         </div>
       </div>

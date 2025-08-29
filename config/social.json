@@ -1,22 +1,17 @@
 [
   {
     "platform": "GitHub",
-    "url": "https://github.com/killcod3",
-    "icon": "Github"
+    "url": "https://github.com/SomeDev",
+    "icon": "github"
   },
   {
-    "platform": "LinkedIn",
-    "url": "https://linkedin.com/in/jawadcodes",
-    "icon": "Linkedin"
+    "platform": "Discord",
+    "url": "https://discordapp.com/users/869326316325965864",
+    "icon": "discord"
   },
   {
-    "platform": "Twitter",
-    "url": "https://twitter.com",
-    "icon": "Twitter"
-  },
-  {
-    "platform": "Dribbble",
-    "url": "https://dribbble.com",
-    "icon": "Dribbble"
+    "platform": "Roblox",
+    "url": "https://www.roblox.com/users/5029337352",
+    "icon": "roblox"
   }
 ]
