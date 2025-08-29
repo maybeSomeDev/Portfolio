@@ -3,6 +3,17 @@
     "id": "project-1",
     "title": "E-commerce Platform",
     "description": "A full-stack e-commerce solution with headless CMS integration.",
+    "titlesList": [
+      "Test1",
+      "Test2"
+    ],
+    "descsList": [
+      "Desc test1",
+      "Desc test2"
+    ],
+    "codeList":[
+      "test"
+    ],
     "longDescription": "Built with Next.js, TypeScript, and Tailwind CSS, this e-commerce platform features a headless CMS, cart functionality, payment processing with Stripe, and user authentication.",
     "tags": ["Next.js", "TypeScript", "Tailwind CSS", "Stripe", "Headless CMS"],
     "imageUrl": "https://images.pexels.com/photos/5082579/pexels-photo-5082579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",

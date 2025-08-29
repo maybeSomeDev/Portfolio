@@ -18,6 +18,11 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+
+  titlesList: string[];
+  descsList: string[];
+  codeList: string[];
+  
   longDescription?: string;
   tags: string[];
   imageUrl: string;

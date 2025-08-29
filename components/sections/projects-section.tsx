@@ -1,4 +1,6 @@
 "use client";
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css"; // or any theme you like
 
 import { useState } from "react";
 import { SectionContainer } from "@/components/section-container";
@@ -7,52 +9,78 @@ import { getProjects } from "@/lib/config";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Github, ExternalLink, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Github,
+  ExternalLink,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import Image from "next/image";
 import { Project } from "@/config/types";
+
+import testLua from "@/components/scripts/testScript/test.lua";
+
+const mapScripts: any = {
+  test: testLua,
+}
 
 export function ProjectsSection() {
   const allProjects = getProjects();
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  
+
   // Get unique tags from all projects
   const allTags = Array.from(
-    new Set(allProjects.flatMap(project => project.tags))
+    new Set(allProjects.flatMap((project) => project.tags))
   ).sort();
-  
+
   // Filter projects based on selected tag
   const filteredProjects = selectedTag
-    ? allProjects.filter(project => project.tags.includes(selectedTag))
+    ? allProjects.filter((project) => project.tags.includes(selectedTag))
     : allProjects;
-    
+
   return (
     <SectionContainer id="projects">
-      <SectionHeading 
-        title="My Projects" 
+      <SectionHeading
+        title="My Projects"
         subtitle="Here are some of my recent projects. I've worked on a variety of applications from e-commerce to data visualization."
       />
-      
-      <motion.div 
+
+      <motion.div
         className="flex flex-wrap gap-2 justify-center mb-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <Button 
-          variant={selectedTag === null ? "default" : "outline"} 
-          className="rounded-full" 
+        <Button
+          variant={selectedTag === null ? "default" : "outline"}
+          className="rounded-full"
           onClick={() => setSelectedTag(null)}
         >
           All
         </Button>
         {allTags.map((tag) => (
-          <Button 
-            key={tag} 
-            variant={selectedTag === tag ? "default" : "outline"} 
+          <Button
+            key={tag}
+            variant={selectedTag === tag ? "default" : "outline"}
             className="rounded-full"
             onClick={() => setSelectedTag(tag)}
           >
@@ -60,31 +88,31 @@ export function ProjectsSection() {
           </Button>
         ))}
       </motion.div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<AnimatePresence>
-  {filteredProjects.map((project, index) => (
-    <motion.div
-      key={project.id}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 50 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true, margin: "-100px" }}
-      layout
-    >
-      <ProjectCard 
-        project={project} 
-        onSelect={() => setSelectedProject(project)} 
-      />
-    </motion.div>
-  ))}
-</AnimatePresence>
+        <AnimatePresence>
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              layout
+            >
+              <ProjectCard
+                project={project}
+                onSelect={() => setSelectedProject(project)}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
-      
-      <ProjectDialog 
-        project={selectedProject} 
-        onClose={() => setSelectedProject(null)} 
+
+      <ProjectDialog
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
       />
     </SectionContainer>
   );
@@ -98,11 +126,11 @@ interface ProjectCardProps {
 function ProjectCard({ project, onSelect }: ProjectCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = project.images || [project.imageUrl].filter(Boolean);
-  
+
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
-  
+
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
@@ -119,7 +147,7 @@ function ProjectCard({ project, onSelect }: ProjectCardProps) {
             className="transition-transform duration-500 hover:scale-105"
           />
         )}
-        
+
         {images.length > 1 && (
           <>
             <Button
@@ -143,9 +171,8 @@ function ProjectCard({ project, onSelect }: ProjectCardProps) {
               {images.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentImageIndex ? 'bg-white' : 'bg-white/50'
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-colors ${index === currentImageIndex ? "bg-white" : "bg-white/50"
+                    }`}
                 />
               ))}
             </div>
@@ -176,18 +203,28 @@ function ProjectCard({ project, onSelect }: ProjectCardProps) {
             </Button>
           </DialogTrigger>
         </Dialog>
-        
+
         <div className="flex gap-2">
           {project.githubUrl && (
             <Button variant="outline" size="icon" asChild>
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Repository"
+              >
                 <Github className="h-4 w-4" />
               </a>
             </Button>
           )}
           {project.liveUrl && (
             <Button variant="outline" size="icon" asChild>
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Live Demo"
+              >
                 <ExternalLink className="h-4 w-4" />
               </a>
             </Button>
@@ -205,19 +242,19 @@ interface ProjectDialogProps {
 
 function ProjectDialog({ project, onClose }: ProjectDialogProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   if (!project) return null;
-  
+
   const images = project.images || [project.imageUrl].filter(Boolean);
-  
+
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
-  
+
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
-  
+
   return (
     <Dialog open={!!project} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="max-w-5xl h-screen overflow-y-auto">
@@ -225,7 +262,7 @@ function ProjectDialog({ project, onClose }: ProjectDialogProps) {
           <DialogTitle className="text-2xl">{project.title}</DialogTitle>
           <DialogDescription>{project.description}</DialogDescription>
         </DialogHeader>
-        
+
         <div className="relative h-64 md:h-80 mt-4 rounded-md overflow-hidden group">
           {images.length > 0 && (
             <Image
@@ -235,7 +272,7 @@ function ProjectDialog({ project, onClose }: ProjectDialogProps) {
               style={{ objectFit: "cover" }}
             />
           )}
-          
+
           {images.length > 1 && (
             <>
               <Button
@@ -254,15 +291,14 @@ function ProjectDialog({ project, onClose }: ProjectDialogProps) {
               >
                 <ChevronRight className="h-4 w-4" />
               </Button>
-              
+
               {/* Image indicators */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
                 {images.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      index === currentImageIndex ? 'bg-white' : 'bg-white/50'
-                    }`}
+                    className={`w-3 h-3 rounded-full transition-colors ${index === currentImageIndex ? "bg-white" : "bg-white/50"
+                      }`}
                     onClick={() => setCurrentImageIndex(index)}
                   />
                 ))}
@@ -270,14 +306,27 @@ function ProjectDialog({ project, onClose }: ProjectDialogProps) {
             </>
           )}
         </div>
-        
-        <div className="mt-4">
-          <h4 className="text-lg font-semibold mb-2">About this project</h4>
-          <p className="text-muted-foreground">
-            {project.longDescription || project.description}
-          </p>
-        </div>
-        
+
+        {project.titlesList.map((title, index) => {
+          const code = mapScripts[project.codeList[index]];
+          return (
+            <div key={index} className="mt-4">
+              <h4 className="text-lg font-semibold mb-2">{title}</h4>
+              <p className="text-muted-foreground">{project.descsList[index]}</p>
+              {code && (
+                <pre>
+                  <code className="language-lua"
+                    dangerouslySetInnerHTML={{
+                      __html: hljs.highlight(code, { language: "lua", }).value,
+                    }}
+                  />
+                </pre>
+              )}
+            </div>
+          );
+        })}
+
+
         <div className="mt-4">
           <h4 className="text-lg font-semibold mb-2">Technologies</h4>
           <div className="flex flex-wrap gap-2">
@@ -288,18 +337,26 @@ function ProjectDialog({ project, onClose }: ProjectDialogProps) {
             ))}
           </div>
         </div>
-        
+
         <div className="flex gap-4 mt-6">
           {project.liveUrl && (
             <Button asChild>
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View Live Demo <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </Button>
           )}
           {project.githubUrl && (
             <Button variant="outline" asChild>
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub Repository <Github className="ml-2 h-4 w-4" />
               </a>
             </Button>
