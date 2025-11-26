@@ -1,1 +1,1 @@
-Credits: [@killcod3](https://github.com/killcod3/NextGenPortfolio)
+An empty port template for the future.
